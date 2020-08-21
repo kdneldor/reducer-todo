@@ -1,19 +1,19 @@
-export const UPDATE_NAME = "UPDATE_NAME";
-export const TOGGLE_COMPLETED = "TOGGLE_COMPLETED";
+export const ADD_TODO = "ADD_TODO";
+export const TOGGLE_DONE = "TOGGLE_DONE";
 
 export const initialState = [
   {
-    name: "Learn about reducers",
+    todo: "Learn about reducers",
     done: false,
     id: 3892987589,
   },
   {
-    name: "Organize Garage",
+    todo: "Organize Garage",
     done: false,
     id: 1528817077286,
   },
   {
-    name: "Bake Cookies",
+    todo: "Bake Cookies",
     done: false,
     id: 1528817084358,
   },
@@ -21,10 +21,10 @@ export const initialState = [
 
 export const Reducer = (state, action) => {
   switch (action.type) {
-    case UPDATE_NAME:
-      return { ...state, item: action.payload, completed: false };
-    case TOGGLE_COMPLETED:
-      return { ...state, completed: !state.completed };
+    case ADD_TODO:
+      return [...state, { todo: action.payload, done: false, id: Date.now() }];
+    case TOGGLE_DONE:
+      return [...state, { done: !state.done }];
     default:
       return state;
   }
