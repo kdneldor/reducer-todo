@@ -1,6 +1,6 @@
 export const ADD_TODO = "ADD_TODO";
 export const TOGGLE_DONE = "TOGGLE_DONE";
-export const CLEAR_DONE = "CLEAR_DONE"
+export const CLEAR_DONE = "CLEAR_DONE";
 
 export const initialState = [
   {
@@ -21,26 +21,28 @@ export const initialState = [
 ];
 
 export const Reducer = (state, action) => {
+  console.log(state)
   switch (action.type) {
     case ADD_TODO:
       return [...state, { todo: action.payload, done: false, id: Date.now() }];
     case TOGGLE_DONE:
-      const toggle = (todoId) => {
-        console.log(toggle);
-        state.map((todo) => {
-          if (todoId === todo.id) {
-            return [
-              ...state,
-              {
-                done: !todo.done,
-                id: Date.now(),
-              },
-            ];
+      return {
+        ...state,
+        todos: state.todos.map((todo) => {
+          if (todo.id === action.id) {
+            return {
+              ...todo,
+              done: !todo.done,
+            };
           }
-        });
+        }),
       };
+
     case CLEAR_DONE:
-      return state.filter((todo) => !todo.done)
+      return {
+        ...state,
+        todos: state.todos.filter((todo) => !todo.done),
+      };
     default:
       return state;
   }
