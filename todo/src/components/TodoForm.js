@@ -4,6 +4,7 @@ import {
   initialState,
   TOGGLE_DONE,
   ADD_TODO,
+  CLEAR_DONE,
 } from "../reducers/Reducer";
 import TodoList from "./TodoList";
 
@@ -12,21 +13,13 @@ const TodoForm = () => {
   const [state, dispatch] = useReducer(Reducer, initialState);
 
   console.log(state);
-  console.log(todos);
-  const toggleTodo = (todoId) => {
-    setTodos(
-      state.map((todo) => {
-        if (todoId === todo.id) {
-          return dispatch({ type: TOGGLE_DONE });
-        }
-        return todos;
-      })
-    );
+  const toggleTodo = () => {
+    return dispatch({ type: TOGGLE_DONE });
   };
 
   const clearDone = (e) => {
     e.preventDefault();
-    setTodos(state.filter((item) => !item.done));
+    return dispatch ({ type: CLEAR_DONE })
   };
 
   const handleChange = (e) => {

@@ -4,6 +4,7 @@ import Todo from "./Todo";
 
 const TodoList = (props) => {
   console.log(props.todos);
+
   return (
     <div className="todo-list">
       {
